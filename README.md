@@ -6,7 +6,7 @@ A feature-rich Netflix clone built with modern web technologies, featuring real 
 
 ## 🚀 Live Demo
 
-[![Netflix Clone Demo](https://img.shields.io/badge/Demo-Live-green?style=for-the-badge)](https://your-netflix-clone.vercel.app) <!-- Replace with your actual demo link -->
+[![Netflix Clone Demo](https://img.shields.io/badge/Demo-Live-green?style=for-the-badge)](https://netflix-clone-v7a1.onrender.com/) <!-- Replace with your actual demo link -->
 
 ## ✨ Features
 
