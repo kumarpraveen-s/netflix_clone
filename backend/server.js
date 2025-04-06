@@ -1,5 +1,6 @@
 import express from "express";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 import authRoutes from "./routes/auth.route.js";
 import movieRoutes from "./routes/movie.route.js";
@@ -13,6 +14,15 @@ import { protectRoute } from "./middleware/protectRoute.js";
 const app = express();
 
 const PORT = ENV_VARS.PORT;
+// Allow only your frontend URL
+const allowedOrigin = "https://video-streaming-app1.netlify.app/"; // <-- replace with your actual frontend domain
+
+app.use(
+    cors({
+        origin: allowedOrigin,
+        credentials: true, // If you're using cookies or sessions
+    })
+);
 
 app.use(express.json()); // will allow us to parse req.body
 app.use(cookieParser());
