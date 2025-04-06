@@ -7,8 +7,7 @@
         "dev": "nodemon backend/server.js",
         "start": "node backend/server.js",
         "build": "npm install",
-        "build-frontend": "npm install --prefix frontend && npm run build --prefix frontend",
-        "deploy": "npm run build && npm start"
+        "build-frontend": "npm install --prefix frontend && npm run build --prefix frontend"
     },
     "keywords": [],
     "author": "",
