@@ -3,9 +3,9 @@ import { useContentStore } from "../store/content";
 import Navbar from "../components/Navbar";
 import { Search } from "lucide-react";
 import toast from "react-hot-toast";
-import axios from "axios";
 import { ORIGINAL_IMG_BASE_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import { axiosInstance } from "../lib/axios";
 
 const SearchPage = () => {
     const [activeTab, setActiveTab] = useState("movie");
@@ -23,8 +23,8 @@ const SearchPage = () => {
     const handleSearch = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.get(
-                `https://netflix-clone-yw5d.onrender.com/api/v1/search/${activeTab}/${searchTerm}`
+            const res = await axiosInstance.get(
+                `/search/${activeTab}/${searchTerm}`
             );
             setResults(res.data.content);
         } catch (error) {

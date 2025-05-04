@@ -1,29 +1,49 @@
 const Footer = () => {
+    const year = new Date().getFullYear();
+
     return (
-        <footer className="py-6 md:px-8 md:py-0 bg-black text-white border-t border-gray-800">
-            <div className="flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
-                <p className="text-balance text-center text-sm leading-loose text-muted-foreground md:text-left">
-                    Built by{" "}
+        <footer className="bg-black text-white border-t border-gray-800 px-4 py-6 md:px-8">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                <p className="text-sm text-center md:text-left text-muted-foreground leading-relaxed">
+                    &copy; {year}{" "}
+                    <span className="font-semibold">CineVerse</span>. A Netflix
+                    clone built with{" "}
                     <a
-                        href="https://github.com/kumarpraveen-s"
+                        href="https://developer.themoviedb.org/docs"
                         target="_blank"
-                        className="font-medium underline underline-offset-4"
+                        rel="noopener noreferrer"
+                        className="underline underline-offset-4 hover:text-white transition"
+                        aria-label="TMDB API Docs"
                     >
-                        you
+                        TMDB API
                     </a>
-                    . The source code is available on{" "}
+                    . Built by{" "}
                     <a
                         href="https://github.com/kumarpraveen-s"
                         target="_blank"
-                        rel="noreferrer"
-                        className="font-medium underline underline-offset-4"
+                        rel="noopener noreferrer"
+                        className="underline underline-offset-4 hover:text-white transition"
+                        aria-label="GitHub Profile"
                     >
-                        GitHub
+                        @kumarpraveen-s
                     </a>
                     .
                 </p>
+
+                <div className="flex gap-4">
+                    <a
+                        href="https://github.com/kumarpraveen-s/netflix-clone"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="GitHub Repo"
+                        className="text-muted-foreground hover:text-white transition"
+                    >
+                        <i className="fab fa-github text-xl"></i>
+                    </a>
+                </div>
             </div>
         </footer>
     );
 };
+
 export default Footer;

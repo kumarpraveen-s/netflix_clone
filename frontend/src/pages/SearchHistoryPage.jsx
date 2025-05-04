@@ -1,9 +1,9 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { SMALL_IMG_BASE_URL } from "../utils/constants";
 import { Trash } from "lucide-react";
 import toast from "react-hot-toast";
+import { axiosInstance } from "../lib/axios";
 
 function formatDate(dateString) {
     // Create a Date object from the input date string
@@ -39,9 +39,7 @@ const SearchHistoryPage = () => {
     useEffect(() => {
         const getSearchHistory = async () => {
             try {
-                const res = await axios.get(
-                    `https://netflix-clone-yw5d.onrender.com/api/v1/search/history`
-                );
+                const res = await axiosInstance.get(`/search/history`);
                 setSearchHistory(res.data.content);
             } catch (error) {
                 setSearchHistory([]);
@@ -52,9 +50,7 @@ const SearchHistoryPage = () => {
 
     const handleDelete = async (entry) => {
         try {
-            await axios.delete(
-                `https://netflix-clone-yw5d.onrender.com/api/v1/search/history/${entry.id}`
-            );
+            await axiosInstance.delete(`/search/history/${entry.id}`);
             setSearchHistory(
                 searchHistory.filter((item) => item.id !== entry.id)
             );

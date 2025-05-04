@@ -14,13 +14,11 @@ import { protectRoute } from "./middleware/protectRoute.js";
 const app = express();
 
 const PORT = ENV_VARS.PORT;
-// Allow only your frontend URL
-const allowedOrigin = "https://video-streaming-app1.netlify.app/"; // <-- replace with your actual frontend domain
 
 app.use(
     cors({
-        origin: allowedOrigin,
-        credentials: true, // If you're using cookies or sessions
+        origin: "http://localhost:5173", // or your Netlify domain
+        credentials: true,
     })
 );
 

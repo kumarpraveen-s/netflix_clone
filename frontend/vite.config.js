@@ -7,7 +7,7 @@ export default defineConfig({
     // server: {
     //     proxy: {
     //         "/api": {
-    //             target: "https://netflix-clone-yw5d.onrender.com",
+    //             target: "${import.meta.env.VITE_SERVER_URL}",
     //         },
     //     },
     // },

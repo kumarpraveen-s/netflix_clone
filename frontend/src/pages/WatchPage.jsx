@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useContentStore } from "../store/content";
-import axios from "axios";
 import Navbar from "../components/Navbar";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ReactPlayer from "react-player";
 import { ORIGINAL_IMG_BASE_URL, SMALL_IMG_BASE_URL } from "../utils/constants";
 import { formatReleaseDate } from "../utils/dateFunction";
 import WatchPageSkeleton from "../components/skeletons/WatchPageSkeleton";
+import { axiosInstance } from "../lib/axios";
 
 const WatchPage = () => {
     const { id } = useParams();
@@ -23,8 +23,8 @@ const WatchPage = () => {
     useEffect(() => {
         const getTrailers = async () => {
             try {
-                const res = await axios.get(
-                    `https://netflix-clone-yw5d.onrender.com/api/v1/${contentType}/${id}/trailers`
+                const res = await axiosInstance.get(
+                    `/${contentType}/${id}/trailers`
                 );
                 setTrailers(res.data.trailers);
             } catch (error) {
@@ -40,8 +40,8 @@ const WatchPage = () => {
     useEffect(() => {
         const getSimilarContent = async () => {
             try {
-                const res = await axios.get(
-                    `https://netflix-clone-yw5d.onrender.com/api/v1/${contentType}/${id}/similar`
+                const res = await axiosInstance.get(
+                    `/${contentType}/${id}/similar`
                 );
                 setSimilarContent(res.data.similar);
             } catch (error) {
@@ -57,8 +57,8 @@ const WatchPage = () => {
     useEffect(() => {
         const getContentDetails = async () => {
             try {
-                const res = await axios.get(
-                    `https://netflix-clone-yw5d.onrender.com/api/v1/${contentType}/${id}/details`
+                const res = await axiosInstance.get(
+                    `/${contentType}/${id}/details`
                 );
                 setContent(res.data.content);
             } catch (error) {

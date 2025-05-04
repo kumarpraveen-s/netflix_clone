@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useContentStore } from "../store/content";
-import axios from "axios";
+import { axiosInstance } from "../lib/axios";
 
 const useGetTrendingContent = () => {
     const [trendingContent, setTrendingContent] = useState(null);
@@ -8,9 +8,7 @@ const useGetTrendingContent = () => {
 
     useEffect(() => {
         const getTrendingContent = async () => {
-            const res = await axios.get(
-                `https://netflix-clone-yw5d.onrender.com/api/v1/${contentType}/trending`
-            );
+            const res = await axiosInstance.get(`/${contentType}/trending`);
             setTrendingContent(res.data.content);
         };
 

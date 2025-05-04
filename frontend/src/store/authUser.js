@@ -1,6 +1,6 @@
-import axios from "axios";
 import toast from "react-hot-toast";
 import { create } from "zustand";
+import { axiosInstance } from "../lib/axios";
 
 export const useAuthStore = create((set) => ({
     user: null,
@@ -11,8 +11,8 @@ export const useAuthStore = create((set) => ({
     signup: async (credentials) => {
         set({ isSigningUp: true });
         try {
-            const response = await axios.post(
-                "https://netflix-clone-yw5d.onrender.com/api/v1/auth/signup",
+            const response = await axiosInstance.post(
+                `/auth/signup`,
                 credentials
             );
             set({ user: response.data.user, isSigningUp: false });
@@ -25,22 +25,20 @@ export const useAuthStore = create((set) => ({
     login: async (credentials) => {
         set({ isLoggingIn: true });
         try {
-            const response = await axios.post(
-                "https://netflix-clone-yw5d.onrender.com/api/v1/auth/login",
+            const response = await axiosInstance.post(
+                `/auth/login`,
                 credentials
             );
             set({ user: response.data.user, isLoggingIn: false });
         } catch (error) {
             set({ isLoggingIn: false, user: null });
-            toast.error(error.response.data.message || "Login failed");
+            toast.error(error.response?.data.message || "Login failed");
         }
     },
     logout: async () => {
         set({ isLoggingOut: true });
         try {
-            await axios.post(
-                "https://netflix-clone-yw5d.onrender.com/api/v1/auth/logout"
-            );
+            await axiosInstance.post(`/auth/logout`);
             set({ user: null, isLoggingOut: false });
             toast.success("Logged out successfully");
         } catch (error) {
@@ -51,9 +49,8 @@ export const useAuthStore = create((set) => ({
     authCheck: async () => {
         set({ isCheckingAuth: true });
         try {
-            const response = await axios.get(
-                "https://netflix-clone-yw5d.onrender.com/api/v1/auth/authCheck"
-            );
+            const response = await axiosInstance.get(`/auth/authCheck`);
+            console.log(response);
 
             set({ user: response.data.user, isCheckingAuth: false });
         } catch (error) {
