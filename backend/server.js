@@ -17,7 +17,7 @@ const PORT = ENV_VARS.PORT;
 
 app.use(
     cors({
-        origin: "http://localhost:5173", // or your Netlify domain
+        origin: "https://video-cineflex.netlify.app/", // or your Netlify domain
         credentials: true,
     })
 );
