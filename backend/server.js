@@ -15,10 +15,22 @@ const app = express();
 
 const PORT = ENV_VARS.PORT;
 
+// Replace with your actual frontend origin
+const allowedOrigins = [
+    "http://localhost:5173", // local dev
+    "https://video-cineflex.netlify.app", // your Netlify domain
+];
+
 app.use(
     cors({
-        origin: "https://video-cineflex.netlify.app/", // or your Netlify domain
-        credentials: true,
+        origin: function (origin, callback) {
+            if (!origin || allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error("Not allowed by CORS"));
+            }
+        },
+        credentials: true, // ✅ needed if you're sending cookies or Authorization header
     })
 );
 
